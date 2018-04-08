@@ -3,7 +3,7 @@
 project_name: mydjangodeploy
 
 # the base path to install to. You should not need to change this.
-install_root: /home/mechanics/envs/src
+install_root: /root/envs
 
 # the python module path to your project's wsgi file. E.g. for a directory
 # layout like this (assuming `mydjangodeploy` is the project_name and top level
@@ -21,10 +21,10 @@ install_root: /home/mechanics/envs/src
 wsgi_module: mydjangodeploy.wsgi
 
 # any directories that need to be added to the PYTHONPATH.
-pythonpath: "{{ install_root }}/{{ project_name }}/apps"
+pythonpath: "{{ install_root }}/{{ project_name }}"
 
 # the git repository URL for the project
-project_repo: git@github.com:technivore/django-mydjangodeploy-world.git
+project_repo: https://github.com/huogerac/mydjangodeploy.git
     
 # a private key that has access to the repository URL
 ssh_private_key: ~/.ssh/id_rsa
@@ -37,7 +37,7 @@ ssh_private_key: ~/.ssh/id_rsa
 static_root: "{{ install_root }}/{{ project_name }}/static"
 
 # the dns name or names (space separated) for your server
-server_name: django-mydjangodeploy.com www.django-mydjangodeploy.com
+server_name: 128.199.58.50
 
 # database setup. Note that because this playbook doesn't touch the default 
 # postgres pg_hba.conf file, we use local password-based authentication for
@@ -64,7 +64,7 @@ system_packages:
   - git
   - nginx
   - gunicorn
-  - python-pip
+  - python3-pip
   - python-dev
 
 # vim:ft=ansible:

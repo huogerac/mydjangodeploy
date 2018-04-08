@@ -12,7 +12,7 @@
       - restart gunicorn
 
     - name: install python packages
-      pip: requirements={{ install_root }}/{{ project_name }}/requirements.txt
+      pip: executable=pip3 requirements={{ install_root }}/{{ project_name }}/requirements.txt
       notify:
       - restart gunicorn
 
@@ -22,7 +22,10 @@
       - restart nginx
 
     - name: django migrate
-      django_manage: command=migrate app_path={{ install_root }}/{{ project_name }} pythonpath={{ pythonpath }}
+      django_manage:
+        command: migrate
+        app_path: "{{ install_root }}/{{ project_name }}"
+        pythonpath: "{{ pythonpath }}"
 
     - name: django collectstatic
       django_manage: command=collectstatic app_path={{ install_root }}/{{ project_name }} pythonpath={{ pythonpath }}
