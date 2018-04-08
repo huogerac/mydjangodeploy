@@ -120,3 +120,5 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+ALLOWED_HOSTS = ['127.0.0.1', '128.199.58.50', ]
