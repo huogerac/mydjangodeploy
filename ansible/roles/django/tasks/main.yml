@@ -1,0 +1,27 @@
+---
+
+- name: install pip
+  apt:
+    name: python-pip
+    state: present
+    cache_valid_time: 3600
+
+- name: pull the latest code
+  git:
+    repo: '{{ project_repo }}'
+    dest: "{{ app_folder }}"
+    version: master
+
+- name: Build the docker image for django
+  docker_image:
+    name: djangodeploy
+    path: "{{ app_folder }}"
+    state: present
+
+- name: Run django container
+  docker_container:
+    name: mdydjangodeploy
+    image: "djangodeploy"
+    state: started
+    ports:
+      - "8000:8000"

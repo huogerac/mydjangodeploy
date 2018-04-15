@@ -1,0 +1,12 @@
+- hosts: test-django
+  sudo: yes
+  remote_user: root
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+  roles:
+    - name: django
+      tags: [django]
+    - name: nginx
+      tags: [nginx]

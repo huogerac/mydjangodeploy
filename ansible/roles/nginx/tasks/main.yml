@@ -1,0 +1,36 @@
+---
+
+- name: install nginx
+  apt:
+    pkg: nginx
+    state: installed
+    update_cache: true
+  notify:
+    - reload nginx
+
+- name: disable default site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify:
+    - reload nginx
+
+- name: start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: setup nginx conf
+  template:
+    src: nginx/nginx.conf
+    dest: /etc/nginx/nginx.conf
+  notify:
+    - reload nginx
+
+- name: setup nginx for django
+  template:
+    src: nginx/django.conf
+    dest: /etc/nginx/conf.d/django.conf
+  notify:
+    - reload nginx
