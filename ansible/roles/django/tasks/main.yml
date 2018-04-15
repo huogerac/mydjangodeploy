@@ -17,6 +17,7 @@
     name: djangodeploy
     path: "{{ app_folder }}"
     state: present
+    force: yes
 
 - name: Run django container
   docker_container:
